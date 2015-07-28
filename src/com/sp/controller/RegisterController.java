@@ -28,6 +28,12 @@ public class RegisterController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		 if (request.getParameterMap().containsKey("emailid")){
+			String emailID = request.getParameter("emailid");
+			System.out.println("EmailID received "+emailID);
+		}
+		
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -45,5 +51,7 @@ public class RegisterController extends HttpServlet {
 		StudentDAO.addStudent(userEmail, password);
 //		doGet(request, response);
 	}
+	
+	
 
 }

@@ -70,5 +70,36 @@ public class StudentDAO {
 			}
 		}
 	}
+	
+	public static boolean isEmailValid(String email)
+	{
+		boolean result = false;
+		Statement stmt = null;
+		DbConnection conn = null;
+		try{
+		conn = new DbConnection();
+		System.out.println("Validating Email");
+		System.out.println(email);
+		String sql1 = "SELECT * FROM student WHERE email = (\"" + email + "\")";
+		stmt = conn.DbConnectionForStatement();
+		result = stmt.execute(sql1);
+		stmt.close();
+		conn.close();
+		}
+		catch (SQLException se) {
+			se.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+				if (conn != null)
+					conn.close();
+			}
+		}		
+		return result;
+	}
 
 }
