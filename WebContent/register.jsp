@@ -33,9 +33,10 @@
 		<div class="form-group">
 			<label for="userEmail" class="col-sm-2 control-label">Email</label>
 			<div class="col-sm-6">
-				<input type="email" class="form-control" id="userEmail" focusout="validateEmail()"
+				<input type="email" class="form-control" id="userEmail" 
 					name="userEmail" placeholder="Recipient's username"
 					aria-describedby="basic-addon2" required>
+					<label id ="vaildateUser" class="error"></label>
 			</div>
 		</div>
 		<br /> <br /> <br />
@@ -69,7 +70,8 @@
 
 	</form>
 	<script type="text/javascript">
-    
+        var x = document.getElementById("userEmail");
+        x.addEventListener("focusout", validateEmail);
 		$('#registerUser').validator()
 	</script>
 	<%@ include file="footer.jsp"%>

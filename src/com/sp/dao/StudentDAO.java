@@ -71,7 +71,7 @@ public class StudentDAO {
 		}
 	}
 	
-	public static boolean isEmailValid(String email)
+	public static boolean isEmailPresent(String email)
 	{
 		boolean result = false;
 		Statement stmt = null;
@@ -82,7 +82,12 @@ public class StudentDAO {
 		System.out.println(email);
 		String sql1 = "SELECT * FROM student WHERE email = (\"" + email + "\")";
 		stmt = conn.DbConnectionForStatement();
-		result = stmt.execute(sql1);
+		ResultSet rs  = stmt.executeQuery(sql1);
+		
+		if(rs.next()){
+			result = true;
+		}
+
 		stmt.close();
 		conn.close();
 		}
